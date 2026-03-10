@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Missing Items Portal</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 0; }
+    header, footer { background-color: #2c3e50; color: white; text-align: center; padding: 20px; }
+    nav { background-color: #34495e; padding: 10px; text-align: center; }
+    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    section { padding: 20px; }
+    .form-container { background: white; padding: 20px; border-radius: 8px; max-width: 500px; margin: auto; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    input, textarea, button { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; }
+    button { background-color: #2c3e50; color: white; cursor: pointer; }
+    button:hover { background-color: #1a252f; }
+    #adminPanel { display: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>College Missing Items Portal</h1>
+    <p>Report and find lost belongings easily</p>
+  </header>
+
+  <nav>
+    <a href="#report">Report Missing Item</a>
+    <a href="#found">Found Items</a>
+    <a href="#login">Staff Login</a>
+    <a href="#contact">Contact Us</a>
+  </nav>
+
+  <!-- Report Missing Item -->
+  <section id="report">
+    <h2>Report a Missing Item</h2>
+    <div class="form-container">
+      <form>
+        <label for="name">Your Name:</label>
+        <input type="text" id="name" required>
+
+        <label for="item">Item Description:</label>
+        <textarea id="item" rows="3" required></textarea>
+
+        <label for="location">Last Seen Location:</label>
+        <input type="text" id="location" required>
+
+        <label for="date">Date Lost:</label>
+        <input type="date" id="date" required>
+
+        <button type="submit">Submit Report</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Found Items -->
+  <section id="found">
+    <h2>Found Items</h2>
+    <ul id="foundList">
+      <li><strong>Wallet</strong> - Found near library on 9th March</li>
+      <li><strong>Umbrella</strong> - Found in cafeteria on 8th March</li>
+      <li><strong>Notebook</strong> - Found in classroom B2 on 7th March</li>
+    </ul>
+  </section>
+
+  <!-- Staff Login -->
+  <section id="login">
+    <h2>Staff Login</h2>
+    <div class="form-container">
+      <label for="staffId">Staff ID:</label>
+      <input type="text" id="staffId" placeholder="Enter Staff ID">
+      <label for="password">Password:</label>
+      <input type="password" id="password" placeholder="Enter Password">
+      <button onclick="login()">Login</button>
+    </div>
+  </section>
+
+  <!-- Admin Panel -->
+  <section id="adminPanel">
+    <h2>Update Found Items</h2>
+    <div class="form-container">
+      <label for="foundItem">Item Name:</label>
+      <input type="text" id="foundItem">
+      <label for="foundLocation">Location:</label>
+      <input type="text" id="foundLocation">
+      <label for="foundDate">Date Found:</label>
+      <input type="date" id="foundDate">
+      <button onclick="addFoundItem()">Add Item</button>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: missingitems@college.edu</p>
+    <p>Phone: +91 98765 43210</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 College Missing Items Portal</p>
+  </footer>
+
+  <script>
+    function login() {
+      const id = document.getElementById('staffId').value;
+      const pass = document.getElementById('password').value;
+      if (id === "staff@college.edu" && pass === "12345") {
+        alert("Login successful!");
+        document.getElementById('adminPanel').style.display = "block";
+      } else {
+        alert("Invalid credentials!");
+      }
+    }
+
+    function addFoundItem() {
+      const item = document.getElementById('foundItem').value;
+      const location = document.getElementById('foundLocation').value;
+      const date = document.getElementById('foundDate').value;
+      if (item && location && date) {
+        const li = document.createElement("li");
+        li.innerHTML = `<strong>${item}</strong> - Found at ${location} on ${date}`;
+        document.getElementById('foundList').appendChild(li);
+        alert("Item added successfully!");
+      } else {
+        alert("Please fill all fields.");
+      }
+    }
+  </script>
+</body>
+</html>
